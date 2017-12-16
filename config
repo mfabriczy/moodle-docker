@@ -1,0 +1,11 @@
+# Environment Variables
+
+export LOCAL_MOODLE_PATH=
+
+# After a fresh install of a Moodle instance, you will be prompted to enter
+# an email address for the admin user. Having this variable defined will
+# bypass that screen.
+export MOODLE_EMAIL=
+
+# For Xdebug, change to the IP address of en0 on your host machine.
+export XDEBUG_REMOTE_ADDR=

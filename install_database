@@ -1,0 +1,24 @@
+#!/bin/bash
+
+source config
+
+if ! [[ $(whereis perl) == *perl* ]]; then
+    echo "Perl is not install."
+    exit
+fi
+
+DBNAME=$(grep 'dbname =' ${LOCAL_MOODLE_PATH}/config.php | perl -pe "s/.*= '(.+)'.*/\$1/;")
+DBUSER=$(grep -E 'dbuser\s+=' ${LOCAL_MOODLE_PATH}/config.php | perl -pe "s/.*=\s+'(.+)'.*/\$1/;")
+
+docker exec -i -t postgres /usr/lib/postgresql/9.5/bin/dropdb --if-exists -U ${DBUSER} ${DBNAME}
+docker exec -i -t postgres /usr/lib/postgresql/9.5/bin/createdb -U ${DBUSER} ${DBNAME}
+
+echo Installing: $DBNAME
+
+docker exec -i -t phpfpm php admin/cli/install_database.php --agree-license --fullname=${DBNAME} --shortname=${DBNAME} --adminpass=admin
+docker exec -i -t phpfpm php admin/tool/generator/cli/maketestcourse.php --shortname=S --fullname=S --size=S
+
+if [[ ! -z "$MOODLE_EMAIL" ]]; then
+    echo "MOODLE_EMAIL environment variable is set to: $MOODLE_EMAIL"
+    docker exec -i -t postgres psql -U postgres -d $DBNAME -c "UPDATE mdl_user SET email = '$MOODLE_EMAIL' WHERE id = 2" > /dev/null
+fi

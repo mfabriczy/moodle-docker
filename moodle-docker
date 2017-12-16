@@ -1,0 +1,24 @@
+#!/bin/bash
+
+set -e
+
+source config
+
+if [[ -z "$LOCAL_MOODLE_PATH" ]]; then
+    echo "LOCAL_MOODLE_PATH environment variable must be set."
+    exit
+fi
+
+if [ ! -d "pgdata" ]; then
+    echo "The folder pgdata does not exist. Creating..."
+    mkdir pgdata
+fi
+
+platform=
+if [[ `uname` == 'Linux' ]]; then
+    platform=' -c docker-sync-linux.yml'
+fi
+
+if [ $@ = 'start' ]; then dockercomposesync="docker-sync-stack start $platform"; else dockercomposesync="docker-sync-stack $@"; fi
+
+${dockercomposesync}

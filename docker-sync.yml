@@ -1,0 +1,15 @@
+version: "2"
+
+options:
+    verbose: true
+    max-attempt: 30
+
+syncs:
+    moodle-mount-sync:
+        src: ${LOCAL_MOODLE_PATH}
+        sync_strategy: 'unison'
+        sync_excludes: ['.git', '.gitignore']
+    # For two-way volume binding to show the behat dump on the host
+    behat-dump-sync:
+        src: './moodle_behat_output'
+        sync_strategy: 'unison'

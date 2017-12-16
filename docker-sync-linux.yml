@@ -1,0 +1,12 @@
+version: "2"
+
+# Difference between here and docker-compose.yml is that there is no sync_strategy key. The reason this file
+# exists is because setting the sync strategy to default or native_linux does not work in a Linux distro.
+
+syncs:
+    moodle-mount-sync:
+        src: ${LOCAL_MOODLE_PATH}
+        sync_excludes: ['.git', '.gitignore']
+    # For two-way volume binding to show the behat dump on the host
+    behat-dump-sync:
+        src: './moodle_behat_output'
