@@ -1,4 +1,4 @@
-version: '2'
+version: '3'
 
 services:
   nginx:
@@ -32,6 +32,10 @@ services:
     image: selenium/standalone-firefox:2.53.1-beryllium
     volumes:
       - ${LOCAL_MOODLE_PATH}:/var/www/html/moodle:ro
+  redis:
+    container_name: redis
+    command: ["redis-server", "--appendonly", "yes"]
+    image: redis:4.0.9-alpine
 
 volumes:
   moodle-mount-sync:

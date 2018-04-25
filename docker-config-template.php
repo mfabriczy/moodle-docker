@@ -17,6 +17,10 @@ $CFG->directorypermissions = 02777;
 $CFG->admin = 'admin';
 $CFG->passwordpolicy = 0;
 
+$CFG->session_handler_class = '\core\session\redis';
+$CFG->session_redis_host = '127.0.0.1';
+$CFG->session_redis_host = 'redis';
+
 $CFG->debug = (E_ALL | E_STRICT); // DEBUG_DEVELOPER
 $CFG->debugdisplay = 1;
 $CFG->perfdebug = 15;
