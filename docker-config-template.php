@@ -11,7 +11,7 @@ $CFG->dbpass = '';
 $CFG->prefix = 'mdl_';
 $CFG->dboptions = ['dbcollation' => 'utf8mb4_unicode_ci'];
 $CFG->sxs_config = '';
-$CFG->wwwroot = 'http://localhost/moodle';
+$CFG->wwwroot = 'https://localhost';
 $CFG->dataroot  = '/var/moodledata';
 $CFG->directorypermissions = 02777;
 $CFG->admin = 'admin';
@@ -29,7 +29,7 @@ $CFG->debugpageinfo = 1;
 $CFG->phpunit_dataroot = '/var/phpunitdata';
 $CFG->phpunit_prefix = 'phpu_';
 
-$CFG->behat_wwwroot = 'http://nginx/moodle';
+$CFG->behat_wwwroot = 'http://nginx';
 $CFG->behat_dataroot = '/var/moodledata_behat';
 $CFG->behat_prefix = 'bht_';
 $CFG->behat_profiles = array(
