@@ -17,7 +17,7 @@ services:
     command: /bin/sh -c "envsubst '$$XDEBUG_REMOTE_ADDR' < /etc/nginx/conf.d/default.conf.backup > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;' && mkdir /var/moodledata && chmod 777 /var/moodledata"
   postgres:
     container_name: postgres
-    image: postgres:9.5.6
+    image: postgres:9.5.5-alpine
     ports:
       - "5432:5432"
     volumes:

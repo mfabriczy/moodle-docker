@@ -10,8 +10,8 @@ fi
 DBNAME=$(grep 'dbname =' ${LOCAL_MOODLE_PATH}/config.php | perl -pe "s/.*= '(.+)'.*/\$1/;")
 DBUSER=$(grep -E 'dbuser\s+=' ${LOCAL_MOODLE_PATH}/config.php | perl -pe "s/.*=\s+'(.+)'.*/\$1/;")
 
-docker exec -i -t postgres /usr/lib/postgresql/9.5/bin/dropdb --if-exists -U ${DBUSER} ${DBNAME}
-docker exec -i -t postgres /usr/lib/postgresql/9.5/bin/createdb -U ${DBUSER} ${DBNAME}
+docker exec -i -t postgres /usr/local/bin/dropdb --if-exists -U ${DBUSER} ${DBNAME}
+docker exec -i -t postgres /usr/local/bin/createdb -U ${DBUSER} ${DBNAME}
 
 echo Installing: $DBNAME
 
