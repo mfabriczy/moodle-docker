@@ -65,11 +65,6 @@ When switching between branches, allow some time for the files to sync across to
 
 You can now access the Moodle instance by going to `https://localhost` in your browser.
 
-#### Configure Behat testing
-
-You will need to enable [File Sharing](https://docs.docker.com/docker-for-mac/osxfs/#namespaces) in Docker by adding the
-path of your local Moodle directory (Preferences -> File Sharing). 
-
 Why docker-sync?
 ---------------
 Running Docker volumes on macOS is slow when a large number of files are involved (Moodle contains a lot of files).
@@ -108,6 +103,20 @@ To remove the containers:
 ```
 ./moodle-docker clean
 ```
+
+#### Behat
+
+You will need to enable [File Sharing](https://docs.docker.com/docker-for-mac/osxfs/#namespaces) in Docker by adding the
+path of your local Moodle directory (Preferences -> File Sharing).
+
+##### VNC Viewer
+To view the progress of Behat tests in a browser - download [VNC Viewer](https://www.realvnc.com/en/connect/download/viewer).
+
+1. Open the application
+1. While the containers are running, enter `0.0.0.0:<VNC_PORT>` into the field
+1. You will be prompted for a password. The password is `secret`
+
+In the `config` file, you can set the `VNC_PORT`. For example, you can do this if the default port is already in use.
 
 #### Xdebug
 Xdebug is installed into the PHP-FPM container, however, it has only been tested and verified to be working on OS X El Capitan

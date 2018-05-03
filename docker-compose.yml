@@ -31,7 +31,9 @@ services:
       - behat-dump-sync:/var/moodle_behat_output:nocopy
   selenium:
     container_name: selenium
-    image: selenium/standalone-firefox:2.53.1-beryllium
+    image: selenium/standalone-firefox-debug:2.53.1
+    ports:
+      - "${VNC_PORT}:5900"
     volumes:
       - ${LOCAL_MOODLE_PATH}:/var/www/html/moodle:ro
   redis:

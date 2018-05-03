@@ -9,3 +9,6 @@ export MOODLE_EMAIL=
 
 # For Xdebug, change to the IP address of en0 on your host machine.
 export XDEBUG_REMOTE_ADDR=
+
+# The VNC Viewer port for the host. To view Behat testing in a browser.
+export VNC_PORT=5900
