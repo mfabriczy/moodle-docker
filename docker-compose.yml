@@ -9,12 +9,9 @@ services:
       - "443:443"
     volumes:
       - moodle-mount-sync:/usr/share/nginx/html/moodle:nocopy
-      - ./default.conf:/etc/nginx/conf.d/default.conf.backup
+      - ./default.conf:/etc/nginx/conf.d/default.conf
       - ./tls/nginx.crt:/etc/nginx/ssl/nginx.crt
       - ./tls/nginx.key:/etc/nginx/ssl/nginx.key
-    environment:
-      - XDEBUG_REMOTE_ADDR=$XDEBUG_REMOTE_ADDR
-    command: /bin/sh -c "envsubst '$$XDEBUG_REMOTE_ADDR' < /etc/nginx/conf.d/default.conf.backup > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;' && mkdir /var/moodledata && chmod 777 /var/moodledata"
   postgres:
     container_name: postgres
     image: postgres:9.5.5-alpine
@@ -24,9 +21,8 @@ services:
       - ./pgdata:/var/lib/postgresql/data
   phpfpm:
     container_name: phpfpm
-    image: mfabriczy/docker-moodle-phpfpm:1.0
+    image: mfabriczy/docker-moodle-phpfpm:1.1
     volumes:
-      - ./docker-php-ext-xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
       - moodle-mount-sync:/usr/share/nginx/html/moodle:nocopy
       - behat-dump-sync:/var/moodle_behat_output:nocopy
   selenium:

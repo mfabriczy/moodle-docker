@@ -119,17 +119,8 @@ To view the progress of Behat tests in a browser - download [VNC Viewer](https:/
 In the `config` file, you can set the `VNC_PORT`. For example, you can do this if the default port is already in use.
 
 #### Xdebug
-Xdebug is installed into the PHP-FPM container, however, it has only been tested and verified to be working on OS X El Capitan
-with PHPStorm 2017.3.2.
-
-##### Installation instructions
-In the `config` file, set the value of the variable `XDEBUG_REMOTE_ADDR` to the en0 IP address of your local machine.
-You can get this value by using `ifconfig` in the terminal.
-
-You must also set that IP address in the `docker-php-ext-xdebug.ini` file.
-
-**Note:** _If your en0 IP address changes, you'll need to change the configuration files, tear down the environment and
-then spin it up again._ 
+Xdebug is installed into the PHP-FPM container, however, it has only been tested and verified to be working on macOS Mojave 10.14.2
+with PHPStorm 2018.3.3.
 
 Troubleshooting
 ---------------
@@ -171,5 +162,5 @@ The customised PHP-FPM container can be found in [Docker Hub](https://hub.docker
 
 Tested on:
 ----------
-* OS X El Capitan
-* Ubuntu 17.10
+* macOS Mojave 10.14.2
+* Ubuntu 18.04
