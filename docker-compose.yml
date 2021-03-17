@@ -21,7 +21,7 @@ services:
       - ./pgdata:/var/lib/postgresql/data
   phpfpm:
     container_name: phpfpm
-    image: mfabriczy/docker-moodle-phpfpm:1.2
+    image: mfabriczy/docker-moodle-phpfpm:7.4.12-fpm-alpine
     volumes:
       - moodle-mount-sync:/usr/share/nginx/html/moodle:nocopy
       - behat-dump-sync:/var/moodle_behat_output:nocopy
